@@ -190,7 +190,7 @@ if(MSVC)
     option(USE_STATIC_MSVC_RUNTIME "Use the static runtime library" OFF)
 endif()
 
-set(XLSXWRITER_INSTALL "Install applications and library" OFF)
+option(XLW_INSTALL "Install applications and library" OFF)
 
 # `ZLIB_ROOT`
 #
@@ -558,7 +558,7 @@ endif()
 # -------------------
 include(GNUInstallDirs)
 
-if(XLSXWRITER_INSTALL)
+if(XLW_INSTALL)
 	install(
 		TARGETS ${PROJECT_NAME}
 		LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
