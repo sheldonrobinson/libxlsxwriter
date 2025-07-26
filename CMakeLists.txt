@@ -190,6 +190,8 @@ if(MSVC)
     option(USE_STATIC_MSVC_RUNTIME "Use the static runtime library" OFF)
 endif()
 
+set(XLSXWRITER_INSTALL "Install applications and library" OFF)
+
 # `ZLIB_ROOT`
 #
 # The `ZLIB `root directory can be specified either through an environment
@@ -556,22 +558,24 @@ endif()
 # -------------------
 include(GNUInstallDirs)
 
-install(
-    TARGETS ${PROJECT_NAME}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
+if(XLSXWRITER_INSTALL)
+	install(
+		TARGETS ${PROJECT_NAME}
+		LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+		ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+		RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+	)
 
-install(FILES include/xlsxwriter.h DESTINATION include)
+	install(FILES include/xlsxwriter.h DESTINATION include)
 
-install(
-    DIRECTORY include/xlsxwriter
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-    FILES_MATCHING
-    PATTERN "*.h"
-)
-install(
-    FILES ${CMAKE_CURRENT_BINARY_DIR}/xlsxwriter.pc
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
-)
+	install(
+		DIRECTORY include/xlsxwriter
+		DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+		FILES_MATCHING
+		PATTERN "*.h"
+	)
+	install(
+		FILES ${CMAKE_CURRENT_BINARY_DIR}/xlsxwriter.pc
+		DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
+	)
+endif()
