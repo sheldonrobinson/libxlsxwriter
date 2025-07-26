@@ -17,7 +17,7 @@ target_link_libraries(xlsx_fuzzer PRIVATE ${PROJECT_NAME} $ENV{LIB_FUZZING_ENGIN
 target_compile_features(xlsx_fuzzer PRIVATE cxx_std_17)
 
 if (DEFINED ENV{OUT})
-	if(XLSXWRITER_INSTALL)
+	if(XLW_INSTALL)
 		install(TARGETS xlsx_fuzzer DESTINATION $ENV{OUT})
 	endif()
 else ()
